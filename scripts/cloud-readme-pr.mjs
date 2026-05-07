@@ -1,6 +1,8 @@
-import "dotenv/config";
+import dotenv from "dotenv";
 import { appendFile } from "node:fs/promises";
 import { Agent, CursorAgentError } from "@cursor/sdk";
+
+dotenv.config({ override: true });
 
 const apiKey = process.env.CURSOR_API_KEY;
 const repoUrl = process.env.GITHUB_REPO_URL;

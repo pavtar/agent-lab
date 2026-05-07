@@ -1,0 +1,8 @@
+{
+  "agentName": "meeting-secretary",
+  "version": "0.1.0",
+  "runtime": "manual-or-local-sdk",
+  "inputs": ["transcriptPath", "meetingTitle", "participants"],
+  "outputs": ["../Company OS/Run Logs/"],
+  "requiresSecrets": false
+}

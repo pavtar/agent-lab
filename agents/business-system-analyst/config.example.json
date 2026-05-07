@@ -1,0 +1,8 @@
+{
+  "agentName": "business-system-analyst",
+  "version": "0.1.0",
+  "runtime": "manual-first",
+  "inputs": ["briefPath", "meetingNotesPath", "projectDocsPath"],
+  "outputs": ["../Company OS/Projects/"],
+  "requiresSecrets": false
+}

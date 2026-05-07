@@ -1,6 +1,8 @@
-import "dotenv/config";
+import dotenv from "dotenv";
 import { appendFile } from "node:fs/promises";
-import { Agent, CursorAgentError } from "@cursor/sdk";
+import { failWithAgentError, runLocalCursorAgent } from "../lib/agent-runner.mjs";
+
+dotenv.config({ override: true });
 
 const apiKey = process.env.CURSOR_API_KEY;
 
@@ -19,56 +21,22 @@ const prompt = `Изучи этот репозиторий и кратко об�
 
 В конце дай 3 следующие безопасные задачи для агента.`;
 
-let agent;
-
 try {
-  agent = await Agent.create({
+  const runResult = await runLocalCursorAgent({
     apiKey,
-    model: { id: "composer-2" },
-    local: { cwd: process.cwd() },
+    agentName: "repo-summarizer",
+    prompt,
   });
-
-  const run = await agent.send(prompt);
-  console.log(`agentId: ${agent.agentId}`);
-  console.log(`runId: ${run.id}`);
-  console.log("");
-
-  let assistantText = "";
-
-  if (run.supports("stream")) {
-    for await (const event of run.stream()) {
-      if (event.type !== "assistant") continue;
-
-      for (const block of event.message.content) {
-        if (block.type !== "text") continue;
-        process.stdout.write(block.text);
-        assistantText += block.text;
-      }
-    }
-  }
-
-  const result = await run.wait();
-  const status = result.status ?? "unknown";
 
   await appendFile(
     "docs/agent-log.md",
-    `\n## ${new Date().toISOString()} - local repo summarizer\n\n- agentId: ${agent.agentId}\n- runId: ${run.id}\n- status: ${status}\n\n### Итог\n\n${assistantText || "См. вывод SDK в консоли."}\n`,
+    `\n## ${new Date().toISOString()} - local repo summarizer\n\n- agentName: repo-summarizer\n- agentId: ${runResult.agentId}\n- runId: ${runResult.runId}\n- status: ${runResult.status}\n- promptVersion: 0.1.0\n\n### Итог\n\n${runResult.assistantText || "См. вывод SDK в консоли."}\n`,
   );
 
-  if (status !== "finished") {
-    console.error(`\nАгент завершился со статусом: ${status}`);
+  if (runResult.status !== "finished") {
+    console.error(`\nАгент завершился со статусом: ${runResult.status}`);
     process.exit(2);
   }
 } catch (error) {
-  if (error instanceof CursorAgentError) {
-    console.error(`Ошибка запуска SDK: ${error.message}`);
-    console.error(`Можно повторить: ${error.isRetryable}`);
-    process.exit(1);
-  }
-
-  throw error;
-} finally {
-  if (agent) {
-    await agent[Symbol.asyncDispose]();
-  }
+  failWithAgentError(error);
 }

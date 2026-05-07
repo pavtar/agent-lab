@@ -1,0 +1,7 @@
+{
+  "agentName": "repo-summarizer",
+  "version": "0.1.0",
+  "runtime": "local-sdk",
+  "env": ["CURSOR_API_KEY"],
+  "outputs": ["docs/agent-log.md"]
+}

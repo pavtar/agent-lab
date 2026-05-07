@@ -1,0 +1,13 @@
+{
+  "agentName": "metrika-web-analyst",
+  "version": "0.1.0",
+  "runtime": "local-sdk",
+  "schedule": "weekly",
+  "env": [
+    "CURSOR_API_KEY",
+    "YANDEX_METRIKA_TOKEN",
+    "YANDEX_METRIKA_COUNTER_ID",
+    "YANDEX_METRIKA_GOAL_IDS"
+  ],
+  "outputs": ["../Company OS/Run Logs/"]
+}

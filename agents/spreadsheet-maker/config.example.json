@@ -1,0 +1,8 @@
+{
+  "agentName": "spreadsheet-maker",
+  "version": "0.1.0",
+  "runtime": "manual-first",
+  "inputs": ["spreadsheetDocsPath", "taskBrief", "exampleFilePath"],
+  "outputs": ["../Company OS/Projects/"],
+  "requiresSecrets": false
+}

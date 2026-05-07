@@ -1,0 +1,9 @@
+{
+  "agentName": "finance-director",
+  "version": "0.1.0",
+  "runtime": "manual-first",
+  "inputs": ["financeDataPath", "period", "planFactPath"],
+  "outputs": ["../Company OS/Run Logs/"],
+  "requiresSecrets": false,
+  "safety": "no production finance access until separate approval"
+}

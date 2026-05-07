@@ -8,9 +8,14 @@
     "doc": "docs"
   },
   "scripts": {
+    "agents:list": "node scripts/list-agents.mjs",
+    "agent:run": "node scripts/run-agent.mjs",
+    "agent:check": "node scripts/check-agent.mjs",
     "agent:local": "node scripts/local-repo-summarizer.mjs",
     "agent:cloud-pr": "node scripts/cloud-readme-pr.mjs",
-    "check": "node --check scripts/local-repo-summarizer.mjs && node --check scripts/cloud-readme-pr.mjs"
+    "agent:metrika": "node scripts/metrika-web-analyst.mjs",
+    "metrika:counters": "node scripts/metrika-counters.mjs",
+    "check": "node --check lib/agent-runner.mjs && node --check scripts/list-agents.mjs && node --check scripts/run-agent.mjs && node --check scripts/check-agent.mjs && node --check scripts/local-repo-summarizer.mjs && node --check scripts/cloud-readme-pr.mjs && node --check scripts/metrika-counters.mjs && node --check scripts/metrika-web-analyst.mjs"
   },
   "keywords": [],
   "author": "",

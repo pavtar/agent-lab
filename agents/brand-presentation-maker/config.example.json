@@ -1,0 +1,8 @@
+{
+  "agentName": "brand-presentation-maker",
+  "version": "0.1.0",
+  "runtime": "manual-first",
+  "inputs": ["brandDocsPath", "topic", "audience", "slideCount"],
+  "outputs": ["../Company OS/Projects/"],
+  "requiresSecrets": false
+}
