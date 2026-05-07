@@ -1,0 +1,22 @@
+{
+  "name": "agent-lab",
+  "version": "1.0.0",
+  "description": "Учебный проект для первых запусков Cursor SDK агентов.",
+  "type": "module",
+  "main": "scripts/local-repo-summarizer.mjs",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "agent:local": "node scripts/local-repo-summarizer.mjs",
+    "agent:cloud-pr": "node scripts/cloud-readme-pr.mjs",
+    "check": "node --check scripts/local-repo-summarizer.mjs && node --check scripts/cloud-readme-pr.mjs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@cursor/sdk": "^1.0.12",
+    "dotenv": "^17.4.2"
+  }
+}
