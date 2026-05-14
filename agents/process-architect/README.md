@@ -51,6 +51,7 @@
 - `knowledge/business-processes/20-vsm-overview.md` — обзор VSM Ротера.
 - `knowledge/business-processes/21-vsm-current-state.md` — карта текущего состояния потока.
 - `knowledge/business-processes/22-vsm-future-state.md` — карта будущего состояния и план перехода.
+- `knowledge/business-processes/30-uplab-vsm-level1-custom-dev-design.md` — корпоративная VSM уровня 1 (заказная разработка и дизайн), синхронизированная с SSOT.
 - `knowledge/business-processes/sources/Менеджмент процессов.pdf` — исходная книга по BPM.
 - `knowledge/business-processes/sources/Ротер. Учитесь видеть бизнес-процессы.fb2.epub` — исходная книга по VSM.
 

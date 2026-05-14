@@ -68,6 +68,32 @@ docs/sdk-decision-guide.md
 одинаковый запуск каждую неделю
 ```
 
+## Глобальные симлинки в Cursor (macOS)
+
+Чтобы вызывать методики и промпты из **любой открытой папки** (в том числе в Agents Window), на машине можно держать симлинки в домашнем каталоге Cursor. Источник правды по-прежнему этот репозиторий: правки делайте в `agent-lab`, симлинки только подхватывают те же файлы.
+
+### `~/.cursor/skills/`
+
+Сюда связаны каталоги из `skills/`, в которых есть **`SKILL.md`** (персональные skills Cursor; каталог `skills-cursor` для встроенных навыков не используйте):
+
+- `business-process-mapping`
+- `excel-workbook-generation`
+- `toyota-kata-coaching`
+- `uplab-presentation-generation`
+- `yandex-metrika`
+
+Папка `skills/vendor/` в симлинки не входит — отдельного `SKILL.md` там нет.
+
+### `~/.cursor/agent-lab-agents/`
+
+Сюда связаны все папки из `agents/<имя>/` (удобно открывать или перетаскивать в чат **`prompt.md`** по короткому пути, например `~/.cursor/agent-lab-agents/toyota-kata-coach/prompt.md`). Это не skills в терминах Cursor: у агентов в корне паспорта лежит `prompt.md`, а не `SKILL.md`.
+
+### Если перенесли репозиторий
+
+Пересоздайте симлинки на новые абсолютные пути (старые ссылки станут «битыми»).
+
+После изменений в `~/.cursor/skills/` имеет смысл выполнить в Cursor **Reload Window**, чтобы список skills обновился.
+
 ## Команды для SDK и проверки
 
 Эти команды нужны не для обычного разговора с агентом, а для технической проверки и автоматизированных запусков.
@@ -124,7 +150,10 @@ docs/agent-architecture.md
 docs/agents-vs-skills.md
 docs/sdk-decision-guide.md
 docs/agent-roadmap.md
+docs/metrika-setup.md
 ```
+
+По Яндекс.Метрике и агенту `metrika-web-analyst` см. `docs/metrika-setup.md` (токен, счётчики, `npm run agent:metrika`, вывод в `Company OS/Run Logs/`).
 
 ## Первый cloud PR
 
@@ -136,34 +165,6 @@ npm run agent:cloud-pr
 ```
 
 Cloud-агент запустится на отдельной инфраструктуре Cursor и создаст Pull Request для ручной проверки.
-
-## Metrika web analyst
-
-Агент `metrika-web-analyst` анализирует данные Яндекс.Метрики и сохраняет Markdown-отчёт в Obsidian.
-
-Сначала настройте доступ по инструкции:
-
-```text
-docs/metrika-setup.md
-```
-
-Проверьте, что API token видит ваши счётчики:
-
-```bash
-npm run metrika:counters
-```
-
-После выбора счётчика и бизнес-целей запустите отчёт:
-
-```bash
-npm run agent:metrika
-```
-
-Отчёт появится в:
-
-```text
-../Company OS/Run Logs/
-```
 
 ## Правила безопасности
 

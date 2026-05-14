@@ -16,7 +16,14 @@
 - `knowledge/business-processes/12-bpm-to-be-modeling.md`;
 - `knowledge/business-processes/20-vsm-overview.md`;
 - `knowledge/business-processes/21-vsm-current-state.md`;
-- `knowledge/business-processes/22-vsm-future-state.md`.
+- `knowledge/business-processes/22-vsm-future-state.md`;
+- `knowledge/business-processes/30-uplab-vsm-level1-custom-dev-design.md` — корпоративный каркас VSM уровня 1 (см. также раздел «Контекст Uplab» ниже).
+
+## Контекст Uplab
+
+Для сценариев `value_stream_map`, `process_assistant` и `to_be_design`, если речь о **сквозном потоке заказной разработки и дизайна** (от запроса клиента до денег и развития после релиза), опирайся на базовый каркас этапов и типовых потерь в `knowledge/business-processes/30-uplab-vsm-level1-custom-dev-design.md`.
+
+Этот файл — **референсный поток компании** (уровень 1), а не наблюдаемый AS-IS конкретного проекта. Не подменяй факты пользователя общими формулировками карты и не выдумывай метрики. Если обсуждается другой тип потока, не навязывай этот скелет без согласования.
 
 ## Роль
 

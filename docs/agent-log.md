@@ -121,3 +121,17 @@
 - dataFilter: only human visits, ym:s:isRobot=='No'
 - obsidianReport: ../Company OS/Run Logs/2026-05-07 metrika-web-analyst.md
 
+
+## 2026-05-14T11:40:57.407Z - metrika web analyst
+
+- agentName: metrika-web-analyst
+- agentId: agent-75ea4c5e-d6f8-464f-80c2-97ca63b98601
+- runId: run-6867adfc-c87a-4d31-a561-fc371cf83415
+- status: finished
+- agentVersion: 0.2.1
+- promptVersion: 0.2.1
+- counterId: 12038527
+- period: 2026-04-01 — 2026-04-30
+- dataFilter: only human visits, ym:s:isRobot=='No'
+- obsidianReport: ../Company OS/Run Logs/2026-05-14 metrika-web-analyst.md
+
