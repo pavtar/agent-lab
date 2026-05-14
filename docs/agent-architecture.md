@@ -6,6 +6,8 @@
 
 Каждый агент должен быть понятен как небольшой внутренний продукт: у него есть цель, входные данные, правила, команда запуска, отчёт и критерии качества.
 
+Разницу между агентами и skills см. в [agents-vs-skills.md](agents-vs-skills.md).
+
 ## Роли папок
 
 ```text
@@ -33,17 +35,19 @@ Company OS/
 
 ```mermaid
 flowchart TD
-  Human[Руководитель] --> Obsidian[Obsidian Company OS]
-  Obsidian --> AgentCard[Карточка агента]
-  AgentCard --> NpmCommand[npm команда]
-  NpmCommand --> Script[script запуск]
-  Script --> AgentFolder[agents папка]
-  Script --> Skill[skills правила]
+  Human[Руководитель] --> CompanyOS[Company OS]
+  CompanyOS --> AgentCard[Карточка агента]
+  AgentCard --> ManualRun[Cursor Agent]
+  AgentCard --> SdkRun[SDK команда]
+  ManualRun --> AgentFolder[agents папка]
+  SdkRun --> Script[scripts запуск]
+  Script --> AgentFolder
+  AgentFolder --> Skill[skills правила]
+  AgentFolder --> Knowledge[knowledge база]
   Script --> Client[lib API клиент]
   Client --> Api[Внешний API]
-  Script --> CursorSdk[Cursor SDK]
-  CursorSdk --> Report[Markdown отчёт]
-  Report --> RunLogs[Obsidian Run Logs]
+  SdkRun --> Report[Markdown отчёт]
+  Report --> RunLogs[Company OS Run Logs]
 ```
 
 
@@ -83,4 +87,20 @@ agents/<agent-name>/
 5. Изменить prompt, skill или источник данных.
 6. Повторить запуск на тех же или сопоставимых данных.
 7. Сравнить качество отчётов.
+
+## Синхронизация с Company OS
+
+`agent-lab` — источник правды по устройству агента.
+
+`Company OS` — пользовательская витрина: с неё руководитель начинает работу и смотрит историю.
+
+Поэтому синхронизация входит в Definition of Done для изменений агентов:
+
+1. Создали нового агента в `agents/` — создайте карточку `../Company OS/Agents/<agent-name>.md`.
+2. Существенно изменили назначение, сценарии, способ запуска или ограничения агента — обновите его карточку в `Company OS/Agents/`.
+3. Провели реальный запуск — сохраните результат в `Company OS/Run Logs/` или убедитесь, что SDK сделал это автоматически.
+4. Приняли правило или архитектурное решение — зафиксируйте его в `Company OS/Decisions/`.
+5. Появился регулярный процесс — оформите playbook в `Company OS/Playbooks/`.
+
+Пользователь не должен помнить об этой синхронизации отдельно. Если агент меняется в `agent-lab`, исполнитель изменения должен сразу обновить соответствующую витрину в `Company OS`.
 

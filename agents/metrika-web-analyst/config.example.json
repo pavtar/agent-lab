@@ -1,6 +1,6 @@
 {
   "agentName": "metrika-web-analyst",
-  "version": "0.1.0",
+  "version": "0.2.1",
   "runtime": "local-sdk",
   "schedule": "weekly",
   "env": [
@@ -8,6 +8,14 @@
     "YANDEX_METRIKA_TOKEN",
     "YANDEX_METRIKA_COUNTER_ID",
     "YANDEX_METRIKA_GOAL_IDS"
+  ],
+  "optionalEnv": ["METRIKA_REPORT_DAYS"],
+  "dataFilter": "ym:s:isRobot=='No'",
+  "seoReports": [
+    "search_engines",
+    "search_phrases",
+    "organic_landing_pages",
+    "organic_devices"
   ],
   "outputs": ["../Company OS/Run Logs/"]
 }

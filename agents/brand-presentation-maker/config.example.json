@@ -2,7 +2,10 @@
   "agentName": "brand-presentation-maker",
   "version": "0.1.0",
   "runtime": "manual-first",
-  "inputs": ["brandDocsPath", "topic", "audience", "slideCount"],
-  "outputs": ["../Company OS/Projects/"],
+  "inputs": ["presentationGeneratorPath", "topic", "client", "audience", "slideCount"],
+  "outputs": ["outputs/brand-presentation-maker/", "../Company OS/Run Logs/"],
+  "defaultGeneratorPath": "vendor/uplab-slide-generator",
+  "requiredSkill": "skills/uplab-presentation-generation/SKILL.md",
+  "expectedTemplate": "templates/Шаблон для презентации.pptx",
   "requiresSecrets": false
 }

@@ -1,0 +1,26 @@
+{
+  "agentName": "toyota-kata-coach",
+  "version": "0.1.0",
+  "runtime": "manual-first",
+  "defaultScenario": "manager_training",
+  "scenarios": [
+    "kata_assistant",
+    "manager_training",
+    "weekly_coaching",
+    "problem_improvement",
+    "team_playbook"
+  ],
+  "requiredSkill": "skills/toyota-kata-coaching/SKILL.md",
+  "inputs": [
+    "leaderRole",
+    "teamContext",
+    "scenario",
+    "difficulty"
+  ],
+  "outputs": [
+    "chat_session",
+    "optional_obsidian_markdown"
+  ],
+  "requiresSecrets": false,
+  "sdkNeededNow": false
+}

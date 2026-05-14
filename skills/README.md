@@ -18,6 +18,8 @@ skills/<skill-name>/SKILL.md
 
 ```text
 skills/yandex-metrika/SKILL.md
+skills/excel-workbook-generation/SKILL.md
+skills/uplab-presentation-generation/SKILL.md
 ```
 
 ## 2. Внешние skills

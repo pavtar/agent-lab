@@ -1,21 +1,103 @@
 # agent-lab
 
-Учебный проект для первых запусков Cursor SDK агентов.
+Рабочая папка для агентов компании: паспорта агентов, skills, база знаний, SDK-скрипты и инструкции по запуску.
+
+## С чего начинать
+
+Если вы хотите просто воспользоваться агентом через Cursor, начните с этого файла:
+
+```text
+docs/how-to-use-agents.md
+```
+
+Это короткая инструкция без терминала: как выбрать агента, выбрать сценарий и вставить готовый prompt в Cursor Agent.
+
+Если вы хотите понять, какие агенты уже есть и что развиваем дальше, откройте:
+
+```text
+docs/agent-roadmap.md
+```
+
+Если вы хотите разобраться в архитектуре: где agents, skills, knowledge и SDK, откройте:
+
+```text
+docs/agent-architecture.md
+docs/agents-vs-skills.md
+docs/sdk-decision-guide.md
+```
 
 ## Что внутри
 
-- `scripts/local-repo-summarizer.mjs` - локальный агент, который читает текущий репозиторий и кратко объясняет его структуру.
-- `scripts/cloud-readme-pr.mjs` - cloud-агент, который может создать Pull Request с улучшением `README.md`.
-- `scripts/metrika-counters.mjs` - проверка доступа к счётчикам Яндекс.Метрики.
-- `scripts/metrika-web-analyst.mjs` - агент веб-аналитик/маркетолог по данным Яндекс.Метрики.
-- `agents/` - паспорта агентов: цель, prompt, конфиг и checklist качества.
-- `skills/` - правила и domain knowledge для агентов.
-- `docs/tasks.md` - список учебных задач для агентов.
-- `docs/agent-log.md` - журнал запусков агентов.
-- `docs/agent-card-template.md` - шаблон карточки агента для Obsidian.
-- `docs/metrika-setup.md` - инструкция получения OAuth token Яндекс.Метрики.
+- `agents/` — паспорта агентов: цель, prompt, конфиг и checklist качества.
+- `skills/` — методики и правила, по которым работают агенты.
+- `knowledge/` — подробная база знаний и исходные материалы для агентов.
+- `scripts/` — SDK-скрипты и технические команды запуска.
+- `lib/` — общие технические модули для SDK и API.
+- `docs/` — инструкции, roadmap, архитектура и журнал запусков.
+- `vendor/` — локальные копии внешних инструментов, которые нужны агентам.
 
-## Подготовка
+## Рабочие агенты
+
+- `toyota-kata-coach` — коуч по Toyota Kata: советы, тренажёр руководителя, weekly coaching, problem improvement, team playbook.
+- `metrika-web-analyst` — веб-аналитик/маркетолог по данным Яндекс.Метрики и SEO.
+- `process-architect` — описание и проектирование бизнес-процессов через BPM и Value Stream Mapping.
+- `brand-presentation-maker` — создание презентаций в фирменном стиле.
+- `spreadsheet-maker` — создание управленческих `.xlsx`-таблиц.
+- `meeting-secretary` — протоколы встреч, решения и задачи.
+- `business-system-analyst` — BRD, ТЗ и user stories.
+- `finance-director` — будущий агент для управленческих финансовых отчётов.
+
+## Как выбрать способ запуска
+
+Используйте Cursor Agent в интерфейсе, если задача интерактивная или разовая:
+
+```text
+спросить совет
+провести тренировку
+подготовить черновик
+разобрать проблему
+```
+
+Используйте Cursor SDK, если нужен повторяемый процесс:
+
+```text
+регулярный отчёт
+данные из API
+запись в Obsidian
+логирование запусков
+одинаковый запуск каждую неделю
+```
+
+## Команды для SDK и проверки
+
+Эти команды нужны не для обычного разговора с агентом, а для технической проверки и автоматизированных запусков.
+
+Проверить проект:
+
+```bash
+npm run check
+```
+
+Список агентов:
+
+```bash
+npm run agents:list
+```
+
+Проверка паспорта агента:
+
+```bash
+npm run agent:check -- toyota-kata-coach
+```
+
+Единый запуск агента, если для него уже есть SDK-команда:
+
+```bash
+npm run agent:run -- metrika-web-analyst
+npm run agent:run -- repo-summarizer
+```
+
+## Подготовка SDK
 
 1. Создайте Cursor SDK API key в Cursor Dashboard -> Integrations.
 2. Настройте переменную окружения:
@@ -24,13 +106,7 @@
 export CURSOR_API_KEY="cursor_..."
 ```
 
-1. Проверьте скрипты:
-
-```bash
-npm run check
-```
-
-## Первый локальный запуск
+## Учебные SDK-запуски
 
 ```bash
 npm run agent:local
@@ -43,31 +119,12 @@ npm run agent:local
 Главные документы:
 
 ```text
+docs/how-to-use-agents.md
 docs/agent-architecture.md
+docs/agents-vs-skills.md
 docs/sdk-decision-guide.md
 docs/agent-roadmap.md
 ```
-
-Список агентов:
-
-```bash
-npm run agents:list
-```
-
-Проверка паспорта агента:
-
-```bash
-npm run agent:check -- metrika-web-analyst
-```
-
-Единый запуск агента, если для него уже есть SDK-команда:
-
-```bash
-npm run agent:run -- metrika-web-analyst
-npm run agent:run -- repo-summarizer
-```
-
-Для остальных агентов сначала используйте их папки в `agents/` как паспорт и prompt для ручной работы в Cursor Agent.
 
 ## Первый cloud PR
 

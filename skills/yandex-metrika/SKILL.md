@@ -1,8 +1,9 @@
 ---
-name: yandex-metrika
+
+## name: yandex-metrika
+
 description: Локальная адаптация правил yandex-metrika skill для Cursor SDK агента.
-source: https://github.com/artwist-polyakov/polyakov-claude-skills/tree/main/plugins/yandex-metrika/skills/yandex-metrika
----
+source: [https://github.com/artwist-polyakov/polyakov-claude-skills/tree/main/plugins/yandex-metrika/skills/yandex-metrika](https://github.com/artwist-polyakov/polyakov-claude-skills/tree/main/plugins/yandex-metrika/skills/yandex-metrika)
 
 # yandex-metrika
 
@@ -15,13 +16,17 @@ source: https://github.com/artwist-polyakov/polyakov-claude-skills/tree/main/plu
 3. Отчёты строить с `accuracy=1`, чтобы снижать риск сэмплирования.
 4. По умолчанию использовать атрибуцию `lastsign` — последний значимый источник.
 5. Кешировать ответы API, чтобы не расходовать лимиты и не перегружать контекст.
-6. В отчёте писать выводы языком маркетолога: что изменилось, где риск, что делать дальше.
+6. Исключать роботный трафик фильтром `ym:s:isRobot=='No'`, чтобы отчёты показывали только визиты людей.
+7. В отчёте писать выводы языком маркетолога: что изменилось, где риск, что делать дальше.
 
 ## Базовые отчёты
 
 - Сводка по источникам трафика.
 - UTM-кампании.
 - Поисковые системы.
+- Поисковые фразы, если API Метрики возвращает данные.
+- Органические посадочные страницы.
+- Органика по устройствам.
 - Конверсии по выбранным целям.
 
 ## Ограничения
@@ -29,3 +34,4 @@ source: https://github.com/artwist-polyakov/polyakov-claude-skills/tree/main/plu
 - Не выводить OAuth token.
 - Не сохранять сырые данные Метрики в git.
 - Указывать в отчёте, если цели не настроены, данных мало или API вернул sampling.
+- Не придумывать SEO-данные: если нет фраз, посадочных страниц или органики по устройствам, фиксировать это как ограничение.

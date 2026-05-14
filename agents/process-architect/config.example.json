@@ -1,0 +1,29 @@
+{
+  "agentName": "process-architect",
+  "version": "0.1.0",
+  "runtime": "manual-first",
+  "defaultScenario": "process_assistant",
+  "scenarios": [
+    "process_assistant",
+    "process_assessment",
+    "as_is_map",
+    "value_stream_map",
+    "to_be_design"
+  ],
+  "requiredSkill": "skills/business-process-mapping/SKILL.md",
+  "knowledgeBase": "knowledge/business-processes/README.md",
+  "inputs": [
+    "processName",
+    "processOwner",
+    "processClient",
+    "scenario",
+    "knownFacts",
+    "constraints"
+  ],
+  "outputs": [
+    "chat_session",
+    "optional_markdown_artifact"
+  ],
+  "requiresSecrets": false,
+  "sdkNeededNow": false
+}

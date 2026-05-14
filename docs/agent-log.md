@@ -30,7 +30,7 @@
 | `**scripts/cloud-readme-pr.mjs`**       | Сценарий **облачного** агента: подключается к **уже выложенному на GitHub** репозиторию и может **улучшить `README.md` и оформить это как Pull Request** для проверки человеком.                                             |
 | `**docs/tasks.md`**                     | Черновой список учебных задач для агентов и напоминание, как формулировать задачу (цель, что можно/нельзя, критерий готовности).                                                                                             |
 | `**docs/agent-log.md`**                 | Журнал запусков — сюда скрипты подставляют время, идентификаторы запуска и краткий итог.                                                                                                                                     |
-| `**docs/agent-card-template.md**`       | Шаблон «карточки» агента (цель, входы, разрешённые и запрещённые действия) — удобно для Obsidian или внутреннего учёта.                                                                                                      |
+| `**docs/agent-card-template.md`**       | Шаблон «карточки» агента (цель, входы, разрешённые и запрещённые действия) — удобно для Obsidian или внутреннего учёта.                                                                                                      |
 | `**package.json**`                      | Настройки Node-проекта и команды вроде `agent:local`, `agent:cloud-pr`, `check` (проверка синтаксиса скриптов).                                                                                                              |
 | `**.env.example**`                      | Пример переменных: ключ Cursor и при необходимости URL репозитория на GitHub; **настоящие секреты в репозиторий не кладут** (в `.gitignore` указаны `node_modules/` и `.env`).                                               |
 
@@ -86,6 +86,7 @@
 3. **Черновик регламента запуска** — на основе `docs/tasks.md` и шаблона карточки описать **один эталонный чеклист** для постановки задачи агенту (цель, что разрешено/запрещено, критерий готовности, кто принимает) — как текст в ответе или в существующий журнал *только если вы явно разрешите запись*.
 
 Если нужно, могу в следующем сообщении развернуть любую из этих трёх в готовую формулировку задачи «копируй — вставь» для исполнителя.
+
 ## 2026-05-07T08:06:14.272Z - metrika web analyst
 
 - agentId: agent-10f84b1e-90e7-4217-bd10-48df49c0cb06
@@ -93,5 +94,30 @@
 - status: finished
 - counterId: 12038527
 - period: 2026-04-07 — 2026-05-06
+- obsidianReport: ../Company OS/Run Logs/2026-05-07 metrika-web-analyst.md
+## 2026-05-07T10:10:35.299Z - metrika web analyst
+
+- agentName: metrika-web-analyst
+- agentId: agent-e17a6c9e-a4d8-4652-b099-6dec1e70e6d5
+- runId: run-ccb5e597-a8d1-4577-8ef2-9af2c2b1b9da
+- status: finished
+- agentVersion: 0.2.0
+- promptVersion: 0.2.0
+- counterId: 12038527
+- period: 2026-04-07 — 2026-05-06
+- obsidianReport: ../Company OS/Run Logs/2026-05-07 metrika-web-analyst.md
+
+
+## 2026-05-07T10:14:01.132Z - metrika web analyst
+
+- agentName: metrika-web-analyst
+- agentId: agent-1a4c0e59-039e-4cc0-a723-33a1cabb2b82
+- runId: run-c6a3ebfb-aa15-4889-af81-ae07809fdd5a
+- status: finished
+- agentVersion: 0.2.1
+- promptVersion: 0.2.1
+- counterId: 12038527
+- period: 2026-04-07 — 2026-05-06
+- dataFilter: only human visits, ym:s:isRobot=='No'
 - obsidianReport: ../Company OS/Run Logs/2026-05-07 metrika-web-analyst.md
 
