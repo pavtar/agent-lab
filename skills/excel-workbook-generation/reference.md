@@ -1,10 +1,12 @@
 # Справочник по генерации Excel-книг
 
-Исходная документация:
+Расширенная методичка (канон в репозитории):
 
 ```text
-/Users/paveltarelkin/Desktop/Vibe/excel generator/excel-workbook-generation-guide.md
+skills/excel-workbook-generation/guide/excel-workbook-generation-guide.md
 ```
+
+Примеры книг: `skills/excel-workbook-generation/examples/`.
 
 ## Цель книги
 

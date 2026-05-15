@@ -7,6 +7,8 @@ description: Создаёт управленческие Excel-книги в ф�
 
 Используй этот skill, когда агент должен создать реальный файл `.xlsx`, а не просто описать структуру таблицы.
 
+Развёрнутая методичка: `skills/excel-workbook-generation/guide/excel-workbook-generation-guide.md`. Образцы: `skills/excel-workbook-generation/examples/`.
+
 ## Основные правила
 
 1. Создай полноценный `.xlsx`, который открывается в Microsoft Excel и импортируется в Google Sheets.

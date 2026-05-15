@@ -33,19 +33,28 @@ docs/sdk-decision-guide.md
 - `knowledge/` — подробная база знаний и исходные материалы для агентов.
 - `scripts/` — SDK-скрипты и технические команды запуска.
 - `lib/` — общие технические модули для SDK и API.
-- `docs/` — инструкции, roadmap, архитектура и журнал запусков.
-- `vendor/` — локальные копии внешних инструментов, которые нужны агентам.
+- `docs/` — инструкции, roadmap, архитектура (`docs/agent-architecture.md`) и журнал запусков.
+- `tools/` — внутренние генераторы (сейчас `uplab-slide-generator/` для презентаций).
+- `skills/` — методики; у `excel-workbook-generation` также `guide/` и `examples/`.
 
 ## Рабочие агенты
+
+### Портфель (`agents/`)
 
 - `toyota-kata-coach` — коуч по Toyota Kata: советы, тренажёр руководителя, weekly coaching, problem improvement, team playbook.
 - `metrika-web-analyst` — веб-аналитик/маркетолог по данным Яндекс.Метрики и SEO.
 - `process-architect` — описание и проектирование бизнес-процессов через BPM и Value Stream Mapping.
 - `brand-presentation-maker` — создание презентаций в фирменном стиле.
 - `spreadsheet-maker` — создание управленческих `.xlsx`-таблиц.
+
+### Черновики (`agents/draft/`)
+
 - `meeting-secretary` — протоколы встреч, решения и задачи.
 - `business-system-analyst` — BRD, ТЗ и user stories.
 - `finance-director` — будущий агент для управленческих финансовых отчётов.
+- `repo-summarizer` — обзор структуры репозитория (учебный read-only сценарий).
+
+См. `docs/agent-roadmap.md`.
 
 ## Как выбрать способ запуска
 
@@ -74,7 +83,7 @@ docs/sdk-decision-guide.md
 
 ### `~/.cursor/skills/`
 
-Сюда связаны каталоги из `skills/`, в которых есть **`SKILL.md`** (персональные skills Cursor; каталог `skills-cursor` для встроенных навыков не используйте):
+Сюда связаны каталоги из `skills/`, в которых есть `**SKILL.md`** (персональные skills Cursor; каталог `skills-cursor` для встроенных навыков не используйте):
 
 - `business-process-mapping`
 - `excel-workbook-generation`
@@ -82,11 +91,11 @@ docs/sdk-decision-guide.md
 - `uplab-presentation-generation`
 - `yandex-metrika`
 
-Папка `skills/vendor/` в симлинки не входит — отдельного `SKILL.md` там нет.
+Папка `skills/attribution/` в симлинки не входит — там только учёт внешних источников, без `SKILL.md`.
 
 ### `~/.cursor/agent-lab-agents/`
 
-Сюда связаны все папки из `agents/<имя>/` (удобно открывать или перетаскивать в чат **`prompt.md`** по короткому пути, например `~/.cursor/agent-lab-agents/toyota-kata-coach/prompt.md`). Это не skills в терминах Cursor: у агентов в корне паспорта лежит `prompt.md`, а не `SKILL.md`.
+Сюда связаны все папки из `agents/<имя>/` (удобно открывать или перетаскивать в чат `**prompt.md**` по короткому пути, например `~/.cursor/agent-lab-agents/toyota-kata-coach/prompt.md`). Это не skills в терминах Cursor: у агентов в корне паспорта лежит `prompt.md`, а не `SKILL.md`.
 
 ### Если перенесли репозиторий
 

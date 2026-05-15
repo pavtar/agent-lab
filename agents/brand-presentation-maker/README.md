@@ -22,7 +22,7 @@ Markdown-файл `content_<topic>.md` и, если доступен PPTX-шаб
 
 ## Проверенная команда
 
-Из папки `vendor/uplab-slide-generator/`:
+Из папки `tools/uplab-slide-generator/`:
 
 ```bash
 python3 generate.py examples/master_universal.md -o ../../outputs/brand-presentation-maker/output_universal_test.pptx
@@ -32,7 +32,7 @@ python3 generate.py examples/master_universal.md -o ../../outputs/brand-presenta
 
 ## Входные данные
 
-- Папка с генератором и документацией: `vendor/uplab-slide-generator/`.
+- Папка с генератором и документацией: `tools/uplab-slide-generator/`.
 - Skill: `skills/uplab-presentation-generation/SKILL.md`.
 - Тема презентации.
 - Аудитория.
@@ -45,7 +45,7 @@ python3 generate.py examples/master_universal.md -o ../../outputs/brand-presenta
 В текущей локальной папке шаблон найден:
 
 ```text
-vendor/uplab-slide-generator/templates/Шаблон для презентации.pptx
+tools/uplab-slide-generator/templates/Шаблон для презентации.pptx
 ```
 
 Если при переносе на другой компьютер шаблона нет, агент готовит Markdown-контент и фиксирует, что для финальной генерации нужен PPTX-шаблон.

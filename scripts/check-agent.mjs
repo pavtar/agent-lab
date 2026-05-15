@@ -9,7 +9,27 @@ if (!agentName) {
 }
 
 const requiredFiles = ["README.md", "prompt.md", "config.example.json", "eval-checklist.md"];
-const agentDir = join("agents", agentName);
+
+async function resolveAgentDir(name) {
+  const primary = join("agents", name);
+  try {
+    await access(join(primary, "prompt.md"));
+    return primary;
+  } catch {
+    const draft = join("agents", "draft", name);
+    await access(join(draft, "prompt.md"));
+    return draft;
+  }
+}
+
+let agentDir;
+try {
+  agentDir = await resolveAgentDir(agentName);
+} catch {
+  console.error(`Агент "${agentName}" не найден в agents/ или agents/draft/.`);
+  process.exit(1);
+}
+
 const missing = [];
 
 for (const file of requiredFiles) {
@@ -21,7 +41,7 @@ for (const file of requiredFiles) {
 }
 
 if (missing.length) {
-  console.error(`Агент "${agentName}" неполный. Не хватает: ${missing.join(", ")}`);
+  console.error(`Агент "${agentName}" неполный (${agentDir}). Не хватает: ${missing.join(", ")}`);
   process.exit(1);
 }
 
@@ -32,4 +52,4 @@ if (config.agentName !== agentName) {
   process.exit(1);
 }
 
-console.log(`Агент "${agentName}" описан корректно.`);
+console.log(`Агент "${agentName}" описан корректно (${agentDir}).`);

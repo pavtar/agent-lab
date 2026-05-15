@@ -4,7 +4,7 @@
 
 На основе задачи и документации создай готовую Excel-книгу `.xlsx`, которую удобно открывать в Microsoft Excel и импортировать в Google Sheets.
 
-Перед созданием файла используй skill `excel-workbook-generation` из `skills/excel-workbook-generation/SKILL.md`. Если нужны подробные правила листов и версий, прочитай `skills/excel-workbook-generation/reference.md`.
+Перед созданием файла используй skill `excel-workbook-generation` из `skills/excel-workbook-generation/SKILL.md`. Если нужны подробные правила листов и версий, прочитай `skills/excel-workbook-generation/reference.md`. Развёрнутая методичка и примеры книг: `skills/excel-workbook-generation/guide/` и `examples/`.
 
 ## Формат ответа
 

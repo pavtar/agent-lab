@@ -27,7 +27,7 @@ skills/uplab-presentation-generation/SKILL.md
 Если skill взят из внешнего репозитория, храните источник и адаптацию отдельно:
 
 ```text
-skills/vendor/
+skills/attribution/
 ```
 
 Не смешивайте внешний оригинал и свои правила без пояснения.

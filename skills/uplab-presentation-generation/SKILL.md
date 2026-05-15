@@ -12,7 +12,7 @@ description: Создаёт презентации Uplab в формате Markd
 Рабочая документация и генератор лежат здесь:
 
 ```text
-vendor/uplab-slide-generator/
+tools/uplab-slide-generator/
 ```
 
 Перед работой прочитай:

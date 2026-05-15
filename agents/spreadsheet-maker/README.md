@@ -22,7 +22,7 @@ SDK понадобится позже, если таблицы нужно рег
 
 ## Входные данные
 
-- Папка с документацией: `/Users/paveltarelkin/Desktop/Vibe/excel generator`.
+- Документация и примеры: `skills/excel-workbook-generation/guide/` и `skills/excel-workbook-generation/examples/`.
 - Skill: `skills/excel-workbook-generation/SKILL.md`.
 - Цель таблицы.
 - Пользователь таблицы.

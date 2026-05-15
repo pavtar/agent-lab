@@ -3,7 +3,7 @@
 Источник:
 
 ```text
-vendor/uplab-slide-generator/
+tools/uplab-slide-generator/
 ```
 
 ## Основные файлы
@@ -35,7 +35,7 @@ python generate.py examples/master_universal.md -o output_universal.pptx
 В `agent-lab` проверенная команда для внутренней копии:
 
 ```bash
-cd vendor/uplab-slide-generator
+cd tools/uplab-slide-generator
 python3 generate.py examples/master_universal.md -o ../../outputs/brand-presentation-maker/output_universal_test.pptx
 ```
 

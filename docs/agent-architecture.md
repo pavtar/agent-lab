@@ -4,7 +4,7 @@
 
 ## Главная идея
 
-Каждый агент должен быть понятен как небольшой внутренний продукт: у него есть цель, входные данные, правила, команда запуска, отчёт и критерии качества.
+Каждый агент — небольшой внутренний продукт: цель, входы, правила, запуск, отчёт и критерии качества.
 
 Разницу между агентами и skills см. в [agents-vs-skills.md](agents-vs-skills.md).
 
@@ -12,26 +12,35 @@
 
 ```text
 agent-lab/
-├─ agents/          # паспорта агентов: README, prompt, config, checklist
-├─ skills/          # знания и правила, которые агент должен применять
-├─ lib/             # технические клиенты и общие функции
-├─ scripts/         # короткие команды запуска
-├─ docs/            # инструкции для человека
-├─ data/            # кеши и временные данные
-└─ package.json     # список команд npm
+├─ agents/              # паспорта: README, prompt, config, eval-checklist
+│  └─ draft/            # черновики до первого полезного результата
+├─ skills/              # методики (SKILL.md, reference, guide, examples)
+│  └─ attribution/      # только учёт внешних источников чужих skills
+├─ knowledge/           # глубокая база и книжные выжимки
+├─ tools/               # внутренний исполняемый код (генераторы, CLI)
+├─ lib/                 # общие модули для SDK и API
+├─ scripts/             # npm-команды и автоматические запуски
+├─ docs/                # инструкции для людей
+├─ data/                # кеши (не коммитить чувствительное)
+└─ outputs/             # примеры артефактов агентов
 ```
 
-Рядом с проектом находится Obsidian vault:
+Рядом — Obsidian vault **Company OS** (карточки, Run Logs, Decisions, Playbooks; зеркало `skills/`, `knowledge/`, `tools/` по необходимости).
 
-```text
-Company OS/
-├─ Agents/          # карточки агентов для управления
-├─ Run Logs/        # отчёты запусков
-├─ Decisions/       # решения по архитектуре и правилам
-└─ Playbooks/       # регулярные сценарии работы
-```
+## Куда класть новый материал
 
-## Поток работы агента
+| Что добавляете | Куда |
+| -------------- | ---- |
+| Роль агента, сценарии, чеклист | `agents/<name>/` |
+| Правила работы, шаблоны ответов | `skills/<name>/` |
+| Длинные методички, книги, карты процессов | `knowledge/<topic>/` |
+| Python/CLI, PPTX-шаблоны, assets генератора | `tools/<name>/` |
+| Адаптация skill с GitHub | `skills/<name>/` + запись в `skills/attribution/` |
+| Регулярный отчёт, API, cron | `scripts/` + `lib/` |
+
+**Не используйте** отдельную папку `vendor/` для своих агентов — исторически так называли копии вне репозитория; канон теперь в `tools/` и `skills/`.
+
+## Поток работы
 
 ```mermaid
 flowchart TD
@@ -39,22 +48,19 @@ flowchart TD
   CompanyOS --> AgentCard[Карточка агента]
   AgentCard --> ManualRun[Cursor Agent]
   AgentCard --> SdkRun[SDK команда]
-  ManualRun --> AgentFolder[agents папка]
-  SdkRun --> Script[scripts запуск]
+  ManualRun --> AgentFolder[agents]
+  SdkRun --> Script[scripts]
   Script --> AgentFolder
-  AgentFolder --> Skill[skills правила]
-  AgentFolder --> Knowledge[knowledge база]
-  Script --> Client[lib API клиент]
+  AgentFolder --> Skill[skills]
+  AgentFolder --> Knowledge[knowledge]
+  AgentFolder --> Tools[tools]
+  Script --> Client[lib]
   Client --> Api[Внешний API]
   SdkRun --> Report[Markdown отчёт]
   Report --> RunLogs[Company OS Run Logs]
 ```
 
-
-
 ## Паспорт агента
-
-Каждый агент получает папку:
 
 ```text
 agents/<agent-name>/
@@ -64,43 +70,29 @@ agents/<agent-name>/
 └─ eval-checklist.md
 ```
 
-`README.md` отвечает на вопрос «зачем агент нужен».  
-`prompt.md` хранит основную инструкцию.  
-`config.example.json` показывает, какие параметры и секреты нужны.  
-`eval-checklist.md` помогает оценивать качество результата после каждого запуска.
-
 ## Что считается хорошим агентом
 
-- Его можно запустить одной командой.
-- Он не требует копировать секреты в чат.
-- Он пишет отчёт в `Company OS/Run Logs/`.
-- Он логирует `agentId`, `runId`, дату, статус и версию prompt.
-- У него есть checklist качества.
-- Его можно улучшать через изменения `prompt.md`, `SKILL.md` или конфига.
+- Запуск понятен из карточки Company OS и паспорта.
+- Секреты не копируются в чат.
+- Важные запуски попадают в `Company OS/Run Logs/`.
+- Есть `eval-checklist.md`.
+- Улучшения идут через `prompt.md`, skill или конфиг.
 
 ## Цикл улучшения
 
 1. Запустить агента.
-2. Открыть отчёт в Obsidian.
-3. Проверить отчёт по `eval-checklist.md`.
-4. Записать замечания.
-5. Изменить prompt, skill или источник данных.
-6. Повторить запуск на тех же или сопоставимых данных.
-7. Сравнить качество отчётов.
+2. Проверить по `eval-checklist.md`.
+3. Обновить prompt / skill / tools при необходимости.
+4. Обновить карточку в `Company OS/Agents/`.
+5. Повторить на сопоставимых данных.
 
 ## Синхронизация с Company OS
 
-`agent-lab` — источник правды по устройству агента.
+`agent-lab` — источник правды. `Company OS` — витрина для руководителя.
 
-`Company OS` — пользовательская витрина: с неё руководитель начинает работу и смотрит историю.
+Definition of Done при изменении агента:
 
-Поэтому синхронизация входит в Definition of Done для изменений агентов:
-
-1. Создали нового агента в `agents/` — создайте карточку `../Company OS/Agents/<agent-name>.md`.
-2. Существенно изменили назначение, сценарии, способ запуска или ограничения агента — обновите его карточку в `Company OS/Agents/`.
-3. Провели реальный запуск — сохраните результат в `Company OS/Run Logs/` или убедитесь, что SDK сделал это автоматически.
-4. Приняли правило или архитектурное решение — зафиксируйте его в `Company OS/Decisions/`.
-5. Появился регулярный процесс — оформите playbook в `Company OS/Playbooks/`.
-
-Пользователь не должен помнить об этой синхронизации отдельно. Если агент меняется в `agent-lab`, исполнитель изменения должен сразу обновить соответствующую витрину в `Company OS`.
-
+1. Паспорт в `agents/` (или `agents/draft/`).
+2. Карточка в `Company OS/Agents/` или `Agents/Draft/`.
+3. При изменении skills/knowledge/tools — обновить зеркало в vault (см. `Company OS/README.md`, `rsync`).
+4. Значимый запуск — запись в `Run Logs/`.
